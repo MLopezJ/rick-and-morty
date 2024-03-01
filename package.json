@@ -50,5 +50,8 @@
     "fetch API"
   ],
   "author": "Mauro Lopez",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "1.71.1"
+  }
 }

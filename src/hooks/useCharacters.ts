@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-type Character = {
+export type Character = {
   id: string;
   name: string;
   status: string;
