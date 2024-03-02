@@ -2,6 +2,7 @@ import { useCharacters } from "../hooks/useCharacters";
 import Loading from "./utils/Loading";
 import Error from "./utils/Error";
 import Card from "./utils/Card";
+import "./Characters.scss";
 
 function Characters() {
   const { charaters, loading, error } = useCharacters();
@@ -15,11 +16,11 @@ function Characters() {
   }
 
   return (
-    <>
+    <div className="Characters">
       {charaters?.map((character) => (
         <Card key={character.id} {...character} />
       ))}
-    </>
+    </div>
   );
 }
 

@@ -1,4 +1,4 @@
-import Characters from './compoments/Charaters';
+import Characters from './compoments/Characters';
 
 function App() {
   return (
