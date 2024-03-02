@@ -57,7 +57,7 @@ export const useCharacters = (): CharaterState => {
     };
 
     fetchCharacters();
-  }, []);
+  }, [api]);
 
   return state;
 };
