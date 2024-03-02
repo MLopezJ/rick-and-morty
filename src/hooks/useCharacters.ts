@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export type Character = {
-  id: string;
+  id: number;
   name: string;
   status: string;
   species: string;
