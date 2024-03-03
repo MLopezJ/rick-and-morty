@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 const Character = () => {
   let { id } = useParams();
-  const { charaters } = useCharacters();
+  const { charaters } = useCharacters().state;
 
   const [state, setState] = useState<{ character: undefined | CharacterType }>({
     character: undefined,

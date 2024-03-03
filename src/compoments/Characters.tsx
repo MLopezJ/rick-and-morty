@@ -3,9 +3,11 @@ import Loading from "./utils/Loading";
 import Error from "./utils/Error";
 import Card from "./utils/Card";
 import "./Characters.scss";
+import Pagination from "./utils/Pagination";
 
 function Characters() {
-  const { charaters, loading, error } = useCharacters();
+  const { state, handlePagination } = useCharacters();
+  const { charaters, loading, error } = state;
 
   if (loading) {
     return <Loading />;
@@ -16,12 +18,24 @@ function Characters() {
   }
 
   return (
-    <div className="Characters">
-      {charaters?.map((character) => (
-        <Card key={character.id} {...character} />
-      ))}
-    </div>
+    <>
+      <div className="Characters">
+        {charaters?.map((character) => (
+          <Card key={character.id} {...character} />
+        ))}
+      </div>
+      <div>
+        <Pagination action={handlePagination}></Pagination>
+      </div>
+    </>
   );
 }
+
+/**
+ * 
+ * action={(n: number) => {
+            console.log(n);
+          }}
+ */
 
 export default Characters;
