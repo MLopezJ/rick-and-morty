@@ -9,8 +9,8 @@ import Card from "./utils/Card";
 import { useEffect, useState } from "react";
 
 const Character = () => {
-  let { id } = useParams();
-  const { charaters } = useCharacters().state;
+  const { id } = useParams();
+  const { charaters, pagination } = useCharacters().state;
 
   const [state, setState] = useState<{ character: undefined | CharacterType }>({
     character: undefined,
@@ -27,7 +27,11 @@ const Character = () => {
 
   return (
     <>
-      <Card key={state.character.id} {...state.character} />
+      <Card
+        key={state.character.id}
+        character={state.character}
+        pagination={pagination}
+      />
       <div>
         <h3>Name</h3>:<p>{`${state.character.name}`}</p>
         <h3>Status</h3>:<p>{`${state.character.status}`}</p>

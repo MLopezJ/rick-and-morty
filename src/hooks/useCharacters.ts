@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 
 export type Character = {
   id: number;
@@ -35,7 +36,7 @@ type CharaterState = {
   pagination: Pagination;
 };
 
-type Pagination = {
+export type Pagination = {
   current: number;
   total: number;
   next: string | undefined;
@@ -67,7 +68,7 @@ export const useCharacters = (): {
   handlePagination: (pag: number) => Promise<void>;
 } => {
   const api = `https://rickandmortyapi.com/api`;
-
+  const location = useLocation().state;
   const [state, setState] = useState<CharaterState>({
     charaters: [],
     loading: true,
@@ -108,8 +109,9 @@ export const useCharacters = (): {
   );
 
   useEffect(() => {
-    fetchCharacters(api, state.pagination.current);
+    const pag = location?.pag
+    fetchCharacters(api, pag !== undefined && pag !== 0? pag : state.pagination.current);
   }, [api]);
 
-  return { state, handlePagination };
+  return { state, handlePagination }; 
 };
