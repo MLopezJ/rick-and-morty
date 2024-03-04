@@ -96,7 +96,7 @@ export const useCharacters = (): {
         });
       }
     },
-    [state.pagination]
+    [] // TODO: remove this and split funcitonality in requestAPI and (handlePagination and useEffect)
   );
 
   const handlePagination = useCallback(
