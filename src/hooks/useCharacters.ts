@@ -78,30 +78,33 @@ export const useCharacters = (): {
     },
   });
 
-  const fetchCharacters = async (api: string, page: number) => {
-    try {
-      const { charaters, pagination, loading, error } = await requestAPI(
-        api,
-        page
-      );
-      setState({ charaters, pagination, loading, error });
-    } catch (e: unknown) {
-      const error = e as Error;
-      setState({
-        charaters: [],
-        loading: false,
-        error,
-        pagination: state.pagination,
-      });
-    }
-  };
+  const fetchCharacters = useCallback(
+    async (api: string, page: number) => {
+      try {
+        const { charaters, pagination, loading, error } = await requestAPI(
+          api,
+          page
+        );
+        setState({ charaters, pagination, loading, error });
+      } catch (e: unknown) {
+        const error = e as Error;
+        setState({
+          charaters: [],
+          loading: false,
+          error,
+          pagination: state.pagination,
+        });
+      }
+    },
+    [state.pagination]
+  );
 
   const handlePagination = useCallback(
     async (pag: number) => {
       const newPag = state.pagination.current + pag;
       await fetchCharacters(api, newPag);
     },
-    [fetchCharacters, state,  api]
+    [fetchCharacters, state, api]
   );
 
   useEffect(() => {
