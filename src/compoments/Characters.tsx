@@ -7,7 +7,7 @@ import Pagination from "./utils/Pagination";
 
 function Characters() {
   const { state, handlePagination } = useCharacters();
-  const { charaters, loading, error, pagination } = state;
+  const { charaters, loading, error } = state;
 
   if (loading) {
     return <Loading />;
@@ -21,11 +21,7 @@ function Characters() {
     <>
       <div className="Characters">
         {charaters?.map((character) => (
-          <Card
-            key={character.id}
-            character={character}
-            pagination={pagination}
-          />
+          <Card key={character.id} character={character} />
         ))}
       </div>
       <div>

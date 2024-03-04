@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { useLocation } from "react-router-dom";
 
 export type Character = {
   id: number;
@@ -44,7 +43,6 @@ export type Pagination = {
 };
 
 const requestAPI = async (api: string, page: number) => {
-  console.log(page)
   const request = await fetch(`${api}/character?page=${page}`);
   const response: CharactersRequest = await request.json();
   const pagination = {
@@ -68,7 +66,6 @@ export const useCharacters = (): {
   handlePagination: (pag: number) => Promise<void>;
 } => {
   const api = `https://rickandmortyapi.com/api`;
-  const location = useLocation().state;
   const [state, setState] = useState<CharaterState>({
     charaters: [],
     loading: true,
@@ -88,7 +85,6 @@ export const useCharacters = (): {
         page
       );
       setState({ charaters, pagination, loading, error });
-      console.log(state, pagination)
     } catch (e: unknown) {
       const error = e as Error;
       setState({
@@ -105,13 +101,12 @@ export const useCharacters = (): {
       const newPag = state.pagination.current + pag;
       await fetchCharacters(api, newPag);
     },
-    [fetchCharacters, state, state.pagination, api]
+    [fetchCharacters, state,  api]
   );
 
   useEffect(() => {
-    const pag = location?.pag
-    fetchCharacters(api, pag !== undefined && pag !== 0? pag : state.pagination.current);
-  }, [api]);
+    fetchCharacters(api, 1);
+  }, [api, fetchCharacters]);
 
-  return { state, handlePagination }; 
+  return { state, handlePagination };
 };
