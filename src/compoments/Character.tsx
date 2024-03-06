@@ -1,7 +1,8 @@
 import { useCharacter } from "../hooks/useCharacter";
 import "./utils/Card.scss";
 import Loading from "./utils/Loading";
-import Card from "./utils/Card";
+
+import "./Character.scss";
 
 const Character = () => {
   const { character } = useCharacter();
@@ -9,18 +10,43 @@ const Character = () => {
   if (character === undefined) return <Loading />;
 
   return (
-    <>
-      <Card key={character.id} character={character} />
+    <div className="container">
       <div>
-        <h3>Name</h3>:<p>{`${character.name}`}</p>
-        <h3>Status</h3>:<p>{`${character.status}`}</p>
-        <h3>Specie</h3>:<p>{`${character.species}`}</p>
-        <h3>Type</h3>:<p>{`${character.type}`}</p>
-        <h3>Gender</h3>:<p>{`${character.gender}`}</p>
-        <h3>Origin</h3>:<p>{`${character.origin.name}`}</p>
-        <h3>Location</h3>:<p>{`${character.location.name}`}</p>
+        <h1 className="text-center">{character.name}</h1>
+
+        <div className="img-container">
+          <img className="img-fluid" src={character.image} alt="" />
+        </div>
+
+        <div>
+          <div className="space-between-elements">
+            <span className="fw-bold">status : </span>
+            {character.status}
+          </div>
+          <div className="space-between-elements">
+            <span className="fw-bold">Gender : </span>
+            {character.gender}
+          </div>
+          <div className="space-between-elements">
+            <span className="fw-bold">Location: </span>
+            {character.location?.name}
+          </div>
+          <div className="space-between-elements">
+            <span className="fw-bold">Origin: </span>
+            {character.origin?.name}
+          </div>
+          <div className="space-between-elements">
+            <span className="fw-bold">Species: </span>
+            {character.species}
+          </div>
+        </div>
+        <div>
+          <button className="character-return space-between-elements">
+            Return
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

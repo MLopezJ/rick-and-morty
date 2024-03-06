@@ -1,10 +1,11 @@
-// type Action = {action: (action: number) => number};
+import "./Pagination.scss";
+
 type Action = {action: (action: number) => void}
 const Pagination = ({ action }: Action) => {
   return (
-    <div>
-      <button onClick={() => action(-1)}>Prev</button>
-      <button onClick={() => action(+1)}>Next</button>
+    <div className="pag-container">
+      <button className="prev" onClick={() => action(-1)}>Prev</button>
+      <button className="next" onClick={() => action(+1)}>Next</button>
     </div>
   );
 };
