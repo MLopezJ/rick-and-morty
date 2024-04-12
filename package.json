@@ -53,6 +53,6 @@
   "author": "Mauro Lopez",
   "license": "MIT",
   "devDependencies": {
-    "sass": "1.74.1"
+    "sass": "1.75.0"
   }
 }
